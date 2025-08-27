@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Flower Shop</title>
+		<link
+			rel="stylesheet"
+			href="style.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+	</head>
+
+	<body>
+		<section id="header">
+			<div>
+				<ul id="navbar">
+					<li>
+						<a
+							href="index.html"
+							class="active"
+							>Home</a
+						>
+					</li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="#">Shop</a></li>
+					<li><a href="flower.html">Flowers</a></li>
+					<li><a href="contact.html">Contact Us</a></li>
+				</ul>
+			</div>
+
+			<div class="icon">
+				<a href="sign-in.html"><i class="fa fa-user-plus"></i></a>
+				<a href="#"><i class="fa fa-cart-shopping"></i></a>
+				<a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+			</div>
+		</section>
+
+		<section id="banner">
+			<div class="banner-text">
+				<h2>FRESH FLOWER & GIFT SHOP</h2>
+				<h3>
+					Making beautiful flowers <br />
+					a part of your life
+				</h3>
+				<div class="button">
+					<a href=""><button class="normal">SHOP NOW</button></a>
+				</div>
+			</div>
+		</section>
+
+		<section id="title">
+			<h3>Our most popular bouquets</h3>
+		</section>
+
+		<section id="bouquet"></section>
+
+		<section id="min-banner">
+			<div class="sub-banner">
+				<div class="banner-t">
+					<h2>Birthay Blooms</h2>
+					<p>Deliver a bouquet of happiness for their big day</p>
+				</div>
+				<div class="black">
+					<button>SHOP BIRTHDAY</button>
+				</div>
+			</div>
+
+			<div class="sub-banner empty"></div>
+		</section>
+
+		<section id="title">
+			<h3>Shop by Occasion</h3>
+		</section>
+
+		<section id="bouquet1">
+			<div class="flower-box1">
+				<div>
+					<img
+						src="img/occa.1.png"
+						alt="" />
+				</div>
+				<div>
+					<h2>The Dreamscape Bouquet</h2>
+					<span>$49</span>
+				</div>
+			</div>
+
+			<div class="flower-box1">
+				<div>
+					<img
+						src="img/occa.2.png"
+						alt="" />
+				</div>
+				<div>
+					<h2>The Dreamscape Bouquet</h2>
+					<span>$90</span>
+				</div>
+			</div>
+
+			<div class="flower-box1">
+				<div>
+					<img
+						src="img/occa.3.png"
+						alt="" />
+				</div>
+				<div>
+					<h2>The Dreamscape Bouquet</h2>
+					<span>$36</span>
+				</div>
+			</div>
+
+			<div class="flower-box1">
+				<div>
+					<img
+						src="img/occa.4.png"
+						alt="" />
+				</div>
+				<div>
+					<h2>The Dreamscape Bouquet</h2>
+					<span>$70</span>
+				</div>
+			</div>
+		</section>
+
+		<footer id="info-text">
+			<div class="col">
+				<h2>Help</h2>
+				<ul>
+					<li><a href="#">Customer Service</a></li>
+					<li><a href="#">Sitemap</a></li>
+				</ul>
+			</div>
+
+			<div class="col">
+				<h2>Account</h2>
+				<ul>
+					<li><a href="#">Manage Your Account</a></li>
+					<li><a href="#">Track Your Order</a></li>
+				</ul>
+			</div>
+
+			<div class="col">
+				<h2>Shop now</h2>
+				<h3>Flower Delivery</h3>
+				<ul>
+					<li><a href="#">Send Flowers</a></li>
+					<li><a href="#">Mixed Flower Bouquets</a></li>
+					<li><a href="#">Same Day Flower Delivery</a></li>
+					<li><a href="#">Roses & Rose Bouquets</a></li>
+				</ul>
+			</div>
+			<div class="log">
+				<div class="log-in">
+					<p>Freshen up your inbox</p>
+					<div class="sign">
+						<input
+							type="email"
+							placeholder="Enter your email" />
+						<button>Sign Up</button>
+					</div>
+				</div>
+
+				<div class="info-icon">
+					<div class="contact">
+						<h3>Contact Us</h3>
+					</div>
+
+					<div class="apps">
+						<i class="fab fa-facebook-f"></i>
+						<i class="fab fa-twitter"></i>
+						<i class="fab fa-instagram"></i>
+						<i class="fab fa-tiktok"></i>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+	<script>
+		async function load() {
+			const res = await fetch("http://localhost:3000/flowers");
+			const data = await res.json();
+			console.log(data);
+
+			data.map((data) => {
+				document.getElementById("bouquet").innerHTML += `
+					<div class="flower-box">
+						<div>
+							<img
+								src='${data.image_url}'
+								alt='${data.name}'
+							/>
+						</div>
+						<div>
+							<h2>${data.name}</h2>
+							<span>${data.price}</span>
+						</div>
+					</div>
+				`;
+			});
+		};
+        load();
+	</script>
+</html>
