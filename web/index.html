@@ -180,28 +180,20 @@
 		</footer>
 	</body>
 	<script>
-		async function load() {
-			const res = await fetch("http://localhost:3000/flowers");
-			const data = await res.json();
-			console.log(data);
-
-			data.map((data) => {
-				document.getElementById("bouquet").innerHTML += `
-					<div class="flower-box">
-						<div>
-							<img
-								src='${data.image_url}'
-								alt='${data.name}'
-							/>
-						</div>
-						<div>
-							<h2>${data.name}</h2>
-							<span>${data.price}</span>
-						</div>
-					</div>
-				`;
-			});
-		};
-        load();
+		window.onload = (e) => fetch("http://localhost:3000/flowers")
+			.then((res) => res.json())
+			.then((data) => {
+				const container = document.getElementById("bouquet");
+				data.forEach((flower) => {
+					container.innerHTML += `
+                            <div class="flower-box">
+                            <img src="${flower.image_url}" alt="${flower.name}">
+                            <h2>${flower.name}</h2>
+                            <span>$${flower.price}</span>
+                            </div>
+                        `;
+				});
+			})
+			.catch((err) => console.error(err));
 	</script>
 </html>
